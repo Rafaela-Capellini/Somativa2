@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Somativa.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produtos</h1>
+
+@{
+    ViewData["Title"] = "Layout";
+}
+
+
+<div class="container">
+    <div class="row linha justify-content-center">
+        <div class="col-12 col-md-12 col-lg-12 order-lg-0 order-md-0 order-0 coluna text-white"></div>
+        <div class="col-12 col-md-2 col-lg-2  order-lg-1 order-1 coluna H300 text-white"></div>
+        <div class="col-12 col-md-10 col-lg-10 order-lg-2 order-md-2 order-1 coluna H300 text-white"></div>
+        <div class="col-12 col-md-12 col-lg-12 order-lg-3 order-md-3 order-3 coluna text-white"></div>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-warning m-2">
+        <svg bootstrap-icon="Plus" width="16" height="16" aria-label="Create"></svg>
+        Criar
+    </a>
+</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+
+                @{
+                    string foto;
+                    if (@item.Imagem.Length > 0)
+                    {
+                        foto = $"\\img\\{@item.Imagem}";
+                    }
+                    else
+                    {
+                        foto = "\\img\\foto.png";
+                    }
+                }
+                <img src=@foto />
+                                
+                 <a asp-action="Imagem"></a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </h5>
+                    <h6>
+                        @Html.DisplayFor(modelItem => item.Preco)
+                    </h6>
+
+                    <p class="card-text">Seja nosso cliente!!</p>
+                    <a asp-controller="Compras" asp-action="Index" asp-route-id="@item.ProdutoId" class="btn btn-primary" style="background-color:cadetblue">Comprar</a>
+                    <a asp-action="Delete" class="btn m-2 text-white" style="background-color:darkslategrey" asp-route-id="@item.ProdutoId">
+                        <svg bootstrap-icon="Trash2" width="16" height="16" aria-label="Deletar"></svg>
+                        Deletar
+                    </a>
+
+                    
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+

@@ -1,0 +1,34 @@
+﻿@model Somativa.Models.Categoria
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Você tem certaza que quer apagar?</h3>
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CategoriaId" />
+
+        <button type="submit" class="btn m-2 text-white" style="background-color:darkslategrey">
+            <svg bootstrap-icon="Trash2" width="16" height="16" aria-label="Delete"></svg> Deletar
+        </button>
+
+        <a asp-action="Index" class="btn m- 1 text-white" style="background-color:darkslategrey">
+            <svg bootstrap-icon="XCircle" width="16" height="16" aria-label="Cancelar"></svg>
+            Cancelar
+        </a>
+    </form>
+</div>

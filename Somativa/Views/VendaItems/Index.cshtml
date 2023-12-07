@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Somativa.Models.VendaItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vendas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-warning m-2">
+        <svg bootstrap-icon="Plus" width="16" height="16" aria-label="Create"></svg>
+        Criar
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Venda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unitario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venda.VendaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.ProdutoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unitario)
+            </td>
+            <td class="text-end">
+                    <a asp-action="Edit" class="btn m-2 text-white" style="background-color:lightseagreen" asp-route-id="@item.VendaItemId">
+                        <svg bootstrap-icon="Pencil" width="16" height="16" aria-label="Editar"></svg>
+                        Editar
+                    </a>
+                    <a asp-action="Details" class="btn m-2 text-white" style="background-color:cadetblue" asp-route-id="@item.VendaItemId">
+                        <svg bootstrap-icon="InfoCircle" width="16" height="16" aria-label="Mais"></svg>
+                        Detalhar
+                    </a>
+                    <a asp-action="Delete" class="btn m-2 text-white" style="background-color:darkslategrey" asp-route-id="@item.VendaItemId">
+                        <svg bootstrap-icon="Trash2" width="16" height="16" aria-label="Deletar"></svg>
+                        Deletar
+                    </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
